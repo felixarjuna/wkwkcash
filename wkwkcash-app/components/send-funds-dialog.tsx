@@ -108,7 +108,6 @@ export default function SendFundsDialog({
       toast({
         variant: "destructive",
         title: "Something went wrong!",
-        description: error,
       });
     } finally {
       setIsSending(false);

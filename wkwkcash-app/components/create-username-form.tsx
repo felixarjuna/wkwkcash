@@ -57,7 +57,7 @@ export default function CreateUsernameForm({
         setIsRegistering(false);
       } else
         toast({
-          type: "desctructive",
+          variant: "destructive",
           title: "Registration failed!",
           description: "Username is already taken.",
         });
