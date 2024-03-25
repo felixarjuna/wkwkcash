@@ -5,6 +5,8 @@ import {
   smartWallet,
 } from "@thirdweb-dev/react";
 import type { AppProps } from "next/app";
+import { Toaster } from "../components/ui/toaster";
+import { ACCOUNT_FACTORY_ADDRESS } from "../lib/constants";
 import "../styles/globals.css";
 
 // This is the chain your dApp will work on.
@@ -13,7 +15,7 @@ import "../styles/globals.css";
 const activeChain = "sepolia";
 
 const smartWalletConfig: SmartWalletConfigOptions = {
-  factoryAddress: "0xba435a27df5F60A4F7E4427f418A8880765860A8",
+  factoryAddress: ACCOUNT_FACTORY_ADDRESS,
   gasless: true,
 };
 
@@ -25,6 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       supportedWallets={[smartWallet(embeddedWallet(), smartWalletConfig)]}
     >
       <Component {...pageProps} />
+      <Toaster />
     </ThirdwebProvider>
   );
 }
