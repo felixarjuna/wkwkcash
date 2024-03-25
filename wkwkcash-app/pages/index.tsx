@@ -7,6 +7,7 @@ import {
 import { NextPage } from "next";
 
 import { Loader2 } from "lucide-react";
+import Head from "next/head";
 import Connected from "../components/connected";
 import Login from "../components/login";
 
@@ -18,6 +19,9 @@ const Home: NextPage = () => {
 
   return (
     <main className="flex items-center justify-center h-screen">
+      <Head>
+        <title>wkwkcash</title>
+      </Head>
       <div className="w-full max-w-7xl p-12 flex flex-col justify-center items-center h-full">
         {address ? (
           wallet instanceof SmartWallet ? (
