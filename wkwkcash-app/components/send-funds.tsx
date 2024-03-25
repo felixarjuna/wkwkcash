@@ -5,7 +5,16 @@ import SendFundsDialog from "./send-funds-dialog";
 export default function SendFunds() {
   const address = useAddress();
 
-  const { data: tokenBalance } = useBalanceForAddress(address!);
+  const { data: tokenBalance, refetch } = useBalanceForAddress(address!);
 
-  return <SendFundsDialog tokenBalance={tokenBalance} />;
+  const refreshWallet = () => {
+    refetch();
+  };
+
+  return (
+    <SendFundsDialog
+      tokenBalance={tokenBalance}
+      refreshWallet={refreshWallet}
+    />
+  );
 }

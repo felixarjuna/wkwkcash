@@ -46,10 +46,12 @@ type SendFundsDialogProps = {
         displayValue: string;
       }
     | undefined;
+  refreshWallet: () => void;
 };
 
 export default function SendFundsDialog({
   tokenBalance,
+  refreshWallet,
 }: SendFundsDialogProps) {
   // state to track the transaction
   const [isSending, setIsSending] = React.useState<boolean>(false);
@@ -60,6 +62,7 @@ export default function SendFundsDialog({
 
   const { contract: accountFactory } = useContract(ACCOUNT_FACTORY_ADDRESS);
   const sdk = useSDK();
+
   async function sendFunds(data: z.infer<typeof SendFundsSchema>) {
     if (data.amount === 0) {
       toast({
@@ -100,6 +103,7 @@ export default function SendFundsDialog({
         title: "Transaction sent!",
         description: `Funds successfully sent to ${receiver}.`,
       });
+      refreshWallet();
     } catch (error) {
       toast({
         variant: "destructive",
